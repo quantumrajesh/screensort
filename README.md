@@ -2,9 +2,19 @@
 
 **Drop photos, AI finds everything, search instantly - your photos organized automatically**
 
-ScreenSort is an intelligent photo management application that uses advanced AI to automatically analyze, categorize, and make your photos instantly searchable. Simply drag and drop your images, and let AI do the heavy lifting of organization.
+<div align="center">
 
-![ScreenSort Demo](https://courageous-swan-769f25.netlify.app)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Try_Now-blue?style=for-the-badge)](https://courageous-swan-769f25.netlify.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/yourusername/screensort)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+
+**[🌟 Try ScreenSort Live](https://courageous-swan-769f25.netlify.app)**
+
+</div>
+
+---
+
+ScreenSort is an intelligent photo management application that uses advanced AI to automatically analyze, categorize, and make your photos instantly searchable. Simply drag and drop your images, and let AI do the heavy lifting of organization.
 
 ## 🌟 Features
 
