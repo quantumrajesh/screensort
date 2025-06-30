@@ -3,6 +3,7 @@ import { Search, Loader2, FileX, Filter, X, ZoomIn, ZoomOut, Info } from 'lucide
 import { useScreenshots } from '../../hooks/useScreenshots';
 import { ScreenshotGrid } from '../Dashboard/ScreenshotGrid';
 import { FloatingUpload } from '../Dashboard/FloatingUpload';
+import { Footer } from '../Layout/Footer';
 import { Database } from '../../lib/supabase';
 
 type Screenshot = Database['public']['Tables']['screenshots']['Row'];
@@ -385,6 +386,9 @@ export function SearchPage() {
 
       {/* Floating Upload Button */}
       <FloatingUpload />
+      
+      {/* Footer with Bolt.new Badge */}
+      <Footer />
     </div>
   );
 }

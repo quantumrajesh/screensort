@@ -5,6 +5,7 @@
 <div align="center">
 
 [![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Try_Now-blue?style=for-the-badge)](https://courageous-swan-769f25.netlify.app)
+[![Built with Bolt](https://img.shields.io/badge/⚡_Built_with-Bolt.new-purple?style=for-the-badge)](https://bolt.new)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/yourusername/screensort)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
@@ -15,6 +16,8 @@
 ---
 
 ScreenSort is an intelligent photo management application that uses advanced AI to automatically analyze, categorize, and make your photos instantly searchable. Simply drag and drop your images, and let AI do the heavy lifting of organization.
+
+> **Built with [Bolt.new](https://bolt.new)** - AI-powered full-stack development in seconds ⚡
 
 ## 🌟 Features
 
@@ -69,6 +72,9 @@ ScreenSort is an intelligent photo management application that uses advanced AI 
 ### Deployment
 - **Netlify** for frontend hosting
 - **Supabase Cloud** for backend services
+
+### Development
+- **Built with [Bolt.new](https://bolt.new)** - AI-powered development platform
 
 ## 📋 Prerequisites
 
@@ -296,6 +302,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
+- **[Bolt.new](https://bolt.new)** for the incredible AI-powered development experience
 - **Supabase** for the amazing backend-as-a-service platform
 - **OpenRouter** for providing access to Gemini 2.0 Flash
 - **Google** for the powerful Gemini vision model
@@ -310,9 +317,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Object Classes**: 80+ detectable objects
 - **Search Modes**: 4 (All, Text, Objects, Colors)
 - **Responsive Breakpoints**: 6 screen sizes
+- **Built with**: [Bolt.new](https://bolt.new) ⚡
 
 ---
 
-**Made with ❤️ by the ScreenSort team**
+**Made with ❤️ using [Bolt.new](https://bolt.new)**
 
 *Transform your photo chaos into organized bliss with the power of AI*

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ScreenshotGrid } from './ScreenshotGrid';
 import { FloatingUpload } from './FloatingUpload';
+import { Footer } from '../Layout/Footer';
 import { useScreenshots } from '../../hooks/useScreenshots';
 import { Loader2, RefreshCw, ZoomIn, ZoomOut } from 'lucide-react';
 
@@ -102,6 +103,9 @@ export function Dashboard() {
 
       {/* Floating Upload Button */}
       <FloatingUpload />
+      
+      {/* Footer with Bolt.new Badge */}
+      <Footer />
     </div>
   );
 }
