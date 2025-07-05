@@ -3,7 +3,7 @@ import { ScreenshotGrid } from './ScreenshotGrid';
 import { FloatingUpload } from './FloatingUpload';
 import { Footer } from '../Layout/Footer';
 import { useScreenshots } from '../../hooks/useScreenshots';
-import { Loader2, RefreshCw, ZoomIn, ZoomOut } from 'lucide-react';
+import { Loader2, RefreshCw, ZoomIn, ZoomOut, Zap } from 'lucide-react';
 
 export function Dashboard() {
   const { screenshots, loading, error, fetchScreenshots } = useScreenshots();
@@ -44,9 +44,20 @@ export function Dashboard() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-normal text-gray-900">Photos</h1>
-              <p className="text-sm text-gray-500 mt-1">
-                {screenshots.length} {screenshots.length === 1 ? 'photo' : 'photos'}
-              </p>
+              <div className="flex items-center space-x-4 mt-1">
+                <p className="text-sm text-gray-500">
+                  {screenshots.length} {screenshots.length === 1 ? 'photo' : 'photos'}
+                </p>
+                <a
+                  href="https://bolt.new"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-1 px-2 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium hover:bg-purple-200 transition-colors"
+                >
+                  <Zap className="w-3 h-3" />
+                  <span>Built with Bolt.new</span>
+                </a>
+              </div>
             </div>
             <div className="flex items-center space-x-3">
               {/* Zoom Controls */}

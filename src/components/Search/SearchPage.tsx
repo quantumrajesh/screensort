@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Loader2, FileX, Filter, X, ZoomIn, ZoomOut, Info } from 'lucide-react';
+import { Search, Loader2, FileX, Filter, X, ZoomIn, ZoomOut, Info, Zap, ExternalLink } from 'lucide-react';
 import { useScreenshots } from '../../hooks/useScreenshots';
 import { ScreenshotGrid } from '../Dashboard/ScreenshotGrid';
 import { FloatingUpload } from '../Dashboard/FloatingUpload';
@@ -354,9 +354,21 @@ export function SearchPage() {
               <Search className="w-8 h-8 text-blue-500" />
             </div>
             <h3 className="text-xl font-normal text-gray-900 mb-2">Search your photos</h3>
-            <p className="text-gray-500 mb-8">
-              Find photos by objects, colors, text, or any combination
-            </p>
+            <div className="space-y-4 mb-8">
+              <p className="text-gray-500">
+                Find photos by objects, colors, text, or any combination
+              </p>
+              <a
+                href="https://bolt.new"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-full text-sm font-medium hover:from-purple-600 hover:to-blue-600 transition-all duration-200 shadow-sm hover:shadow-md"
+              >
+                <Zap className="w-4 h-4" />
+                <span>Powered by Bolt.new</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
               <div className="text-center p-4">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">

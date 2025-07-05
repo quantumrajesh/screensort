@@ -11,16 +11,16 @@ export function Footer() {
             href="https://bolt.new"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-full text-sm font-medium hover:from-purple-600 hover:to-blue-600 transition-all duration-200 shadow-sm hover:shadow-md"
+            className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-full text-base font-semibold hover:from-purple-600 hover:to-blue-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
-            <Zap className="w-4 h-4" />
-            <span>Built with Bolt.new</span>
-            <ExternalLink className="w-3 h-3" />
+            <Zap className="w-5 h-5" />
+            <span>Made with Bolt.new</span>
+            <ExternalLink className="w-4 h-4" />
           </a>
           
           {/* Additional Footer Content */}
           <div className="text-center text-sm text-gray-500">
-            <p>© 2025 ScreenSort. Made with ❤️ using AI-powered development.</p>
+            <p>© 2025 ScreenSort. Built with ❤️ using AI-powered development on Bolt.new</p>
             <p className="mt-1">
               Powered by{' '}
               <a href="https://supabase.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700">
@@ -29,6 +29,10 @@ export function Footer() {
               {' '}and{' '}
               <a href="https://openrouter.ai" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-700">
                 OpenRouter
+              </a>
+              {' '}via{' '}
+              <a href="https://bolt.new" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-700 font-medium">
+                Bolt.new
               </a>
             </p>
           </div>

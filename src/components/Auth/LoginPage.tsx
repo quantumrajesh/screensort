@@ -294,6 +294,20 @@ export function LoginPage() {
         <p className="text-center text-sm text-gray-500 mt-6">
           Secure authentication powered by Supabase
         </p>
+        
+        {/* Built with Bolt.new Badge */}
+        <div className="text-center mt-4">
+          <a
+            href="https://bolt.new"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center space-x-2 px-3 py-1.5 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-full text-xs font-medium hover:from-purple-600 hover:to-blue-600 transition-all duration-200 shadow-sm hover:shadow-md"
+          >
+            <Zap className="w-3 h-3" />
+            <span>Made with Bolt.new</span>
+            <ExternalLink className="w-2.5 h-2.5" />
+          </a>
+        </p>
       </div>
     </div>
   );

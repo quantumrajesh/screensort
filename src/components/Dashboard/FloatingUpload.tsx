@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Plus, Upload, Loader2, X, CheckCircle, Sparkles } from 'lucide-react';
+import { Plus, Upload, Loader2, X, CheckCircle, Sparkles, Zap } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { analyzeImage } from '../../utils/imageAnalysis';
 import { useAuth } from '../../hooks/useAuth';
@@ -313,9 +313,9 @@ export function FloatingUpload() {
           className={`w-14 h-14 rounded-full shadow-lg transition-all duration-200 flex items-center justify-center relative ${
             uploading
               ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 hover:shadow-xl active:scale-95'
+              : 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 hover:shadow-xl active:scale-95 group'
           }`}
-          title="Add photos with AI analysis"
+          title="Add photos with AI analysis - Built with Bolt.new"
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
@@ -326,7 +326,10 @@ export function FloatingUpload() {
           ) : (
             <>
               <Plus className="w-6 h-6 text-white" />
-              <Sparkles className="w-3 h-3 text-white absolute -top-1 -right-1" />
+              <div className="absolute -top-1 -right-1 flex items-center space-x-0.5">
+                <Sparkles className="w-3 h-3 text-white" />
+                <Zap className="w-2.5 h-2.5 text-yellow-300 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
             </>
           )}
         </button>

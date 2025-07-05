@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Search, LogOut, User } from 'lucide-react';
+import { Home, Search, LogOut, User, Zap } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 
 export function Navigation() {
@@ -20,7 +20,18 @@ export function Navigation() {
               alt="ScreenSort Logo" 
               className="h-10 w-10 object-contain rounded-lg"
             />
-            <span className="text-xl font-semibold text-gray-900">ScreenSort</span>
+            <div className="flex flex-col">
+              <span className="text-xl font-semibold text-gray-900">ScreenSort</span>
+              <a
+                href="https://bolt.new"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-purple-600 hover:text-purple-700 flex items-center space-x-1"
+              >
+                <Zap className="w-2.5 h-2.5" />
+                <span>Made with Bolt.new</span>
+              </a>
+            </div>
           </div>
 
           {/* Navigation Links */}
