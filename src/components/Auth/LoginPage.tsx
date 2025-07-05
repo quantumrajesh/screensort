@@ -307,7 +307,7 @@ export function LoginPage() {
             <span>Made with Bolt.new</span>
             <ExternalLink className="w-2.5 h-2.5" />
           </a>
-        </p>
+        </div>
       </div>
     </div>
   );
