@@ -53,11 +53,9 @@ export function LoginPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center mb-4">
-            <img 
-              src="/Green and Brown Minimalist Studio Logo Design Template.jpg" 
-              alt="ScreenSort Logo" 
-              className="h-16 w-16 object-contain rounded-2xl"
-            />
+            <div className="h-16 w-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg">
+              <span className="text-white font-bold text-2xl">S</span>
+            </div>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">ScreenSort</h1>
           <p className="text-gray-600">Drop photos, AI finds everything, search instantly - your photos organized automatically</p>

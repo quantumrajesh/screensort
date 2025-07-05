@@ -15,11 +15,9 @@ export function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo with Text */}
           <div className="flex items-center space-x-3">
-            <img 
-              src="/Green and Brown Minimalist Studio Logo Design Template.jpg" 
-              alt="ScreenSort Logo" 
-              className="h-10 w-10 object-contain rounded-lg"
-            />
+            <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-lg">S</span>
+            </div>
             <div className="flex flex-col">
               <span className="text-xl font-semibold text-gray-900">ScreenSort</span>
               <a
