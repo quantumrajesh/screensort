@@ -63,21 +63,50 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 // Test connection function
 export const testSupabaseConnection = async (): Promise<{ success: boolean; error?: string }> => {
   try {
+    // Add timeout to prevent hanging requests
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+    
     const { data, error } = await supabase.auth.getSession();
+    clearTimeout(timeoutId);
+    
     if (error && error.message.includes('Failed to fetch')) {
       return {
         success: false,
-        error: 'Unable to connect to Supabase. Please check your internet connection and verify that your Supabase project is active and accessible.'
+        error: 'Network error: Unable to reach Supabase servers. Please check your internet connection, verify your Supabase project is active, and ensure no firewall is blocking *.supabase.co domains.'
       };
     }
-    return { success: true };
-  } catch (err: any) {
-    if (err.message?.includes('Failed to fetch') || err.message?.includes('fetch')) {
+    
+    if (error && error.message.includes('Invalid API key')) {
       return {
         success: false,
-        error: 'Network error: Unable to reach Supabase servers. Please check your internet connection and firewall settings.'
+        error: 'Invalid Supabase API key. Please check your VITE_SUPABASE_ANON_KEY in the .env file.'
       };
     }
+    
+    if (error && error.message.includes('Project not found')) {
+      return {
+        success: false,
+        error: 'Supabase project not found. Please verify your VITE_SUPABASE_URL is correct and the project is active.'
+      };
+    }
+    
+    return { success: true };
+  } catch (err: any) {
+    if (err.name === 'AbortError') {
+      return {
+        success: false,
+        error: 'Connection timeout: Supabase request took too long. Please check your internet connection and try again.'
+      };
+    }
+    
+    if (err.message?.includes('Failed to fetch') || err.message?.includes('fetch') || err.message?.includes('NetworkError')) {
+      return {
+        success: false,
+        error: 'Network error: Unable to reach Supabase servers. This could be due to: 1) No internet connection, 2) Firewall blocking *.supabase.co, 3) Supabase project is paused/inactive, or 4) Incorrect Supabase URL.'
+      };
+    }
+    
     return {
       success: false,
       error: `Connection test failed: ${err.message || 'Unknown error'}`

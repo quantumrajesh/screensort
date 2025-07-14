@@ -122,16 +122,14 @@ export function LoginPage() {
                   <div className="mt-3 p-3 bg-red-100 rounded-lg">
                     <p className="text-red-800 text-sm font-medium mb-2">To fix this configuration issue:</p>
                     <ol className="text-red-700 text-sm space-y-1 list-decimal list-inside">
-                      <li>Go to <a href="https://supabase.com/dashboard" target="_blank" rel="noopener noreferrer" className="underline inline-flex items-center">supabase.com/dashboard <ExternalLink className="w-3 h-3 ml-1" /></a></li>
-                      <li>Select your project (or create a new one)</li>
-                      <li>Go to Settings → API</li>
-                      <li>Copy your Project URL and anon public key</li>
-                      <li>Create/update your .env file with these values:
+                      <li>Check your .env file exists in the project root</li>
+                      <li>Verify it contains:
                         <div className="mt-1 p-2 bg-red-200 rounded text-xs font-mono">
-                          VITE_SUPABASE_URL=https://your-project.supabase.co<br/>
-                          VITE_SUPABASE_ANON_KEY=your_anon_key_here
+                          VITE_SUPABASE_URL=https://otgyuvfyicuqortshcep.supabase.co<br/>
+                          VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
                         </div>
                       </li>
+                      <li>Go to <a href="https://supabase.com/dashboard/project/otgyuvfyicuqortshcep" target="_blank" rel="noopener noreferrer" className="underline inline-flex items-center">your Supabase project <ExternalLink className="w-3 h-3 ml-1" /></a> and ensure it's active</li>
                       <li>Restart the development server</li>
                     </ol>
                     <button
@@ -156,8 +154,10 @@ export function LoginPage() {
                     <p className="text-red-800 text-sm font-medium mb-2">Connection troubleshooting:</p>
                     <ul className="text-red-700 text-sm space-y-1 list-disc list-inside">
                       <li>Check your internet connection</li>
-                      <li>Verify your Supabase project is active in the <a href="https://supabase.com/dashboard" target="_blank" rel="noopener noreferrer" className="underline inline-flex items-center">dashboard <ExternalLink className="w-3 h-3 ml-1" /></a></li>
+                      <li>Verify your Supabase project is active: <a href="https://supabase.com/dashboard/project/otgyuvfyicuqortshcep" target="_blank" rel="noopener noreferrer" className="underline inline-flex items-center">Check project status <ExternalLink className="w-3 h-3 ml-1" /></a></li>
                       <li>Ensure no firewall is blocking *.supabase.co</li>
+                      <li>Check if your .env file has the correct Supabase URL</li>
+                      <li>Verify your Supabase project isn't paused due to inactivity</li>
                       <li>Try refreshing the page</li>
                     </ul>
                     <button

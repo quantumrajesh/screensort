@@ -11,12 +11,15 @@ export function useAuth() {
     // Test connection first
     const initializeAuth = async () => {
       try {
+        console.log('🔍 Testing Supabase connection...');
         const connectionTest = await testSupabaseConnection();
         if (!connectionTest.success) {
+          console.error('❌ Supabase connection failed:', connectionTest.error);
           setError(connectionTest.error || 'Unable to connect to Supabase');
           setLoading(false);
           return;
         }
+        console.log('✅ Supabase connection successful');
 
         // Get initial session
         const { data: { session }, error } = await supabase.auth.getSession();
@@ -50,8 +53,16 @@ export function useAuth() {
   const getAuthErrorMessage = (error: any): string => {
     const errorMessage = error?.message || error?.toString() || 'Unknown error occurred';
     
-    if (errorMessage.includes('Failed to fetch') || errorMessage.includes('fetch')) {
-      return 'Unable to connect to Supabase. Please check your internet connection and verify that your Supabase configuration is correct in the .env file. Make sure your Supabase project is active and accessible.';
+    if (errorMessage.includes('Failed to fetch') || errorMessage.includes('fetch') || errorMessage.includes('NetworkError')) {
+      return 'Network connection failed. Please check: 1) Your internet connection, 2) Your .env file has correct VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY, 3) Your Supabase project is active (not paused), 4) No firewall is blocking *.supabase.co domains.';
+    }
+    
+    if (errorMessage.includes('Invalid API key') || errorMessage.includes('Invalid JWT')) {
+      return 'Invalid Supabase credentials. Please check your VITE_SUPABASE_ANON_KEY in the .env file and ensure it matches your Supabase project settings.';
+    }
+    
+    if (errorMessage.includes('Project not found') || errorMessage.includes('404')) {
+      return 'Supabase project not found. Please verify your VITE_SUPABASE_URL is correct and points to an active Supabase project.';
     }
     
     if (errorMessage.includes('Invalid login credentials')) {
@@ -70,9 +81,6 @@ export function useAuth() {
       return 'Password must be at least 6 characters long.';
     }
 
-    if (errorMessage.includes('Network request failed') || errorMessage.includes('network')) {
-      return 'Network error occurred. Please check your internet connection and try again.';
-    }
     
     return errorMessage;
   };
