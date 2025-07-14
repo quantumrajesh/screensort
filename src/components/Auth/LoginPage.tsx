@@ -130,7 +130,7 @@ export function LoginPage() {
                         </div>
                       </li>
                       <li><strong>Restart dev server:</strong> Stop (Ctrl+C) and run <code>npm run dev</code> again</li>
-                      <li><strong>Check Supabase:</strong> <a href="https://supabase.com/dashboard/project/otgyuvfyicuqortshcep" target="_blank" rel="noopener noreferrer" className="underline inline-flex items-center">Verify project is active <ExternalLink className="w-3 h-3 ml-1" /></a></li>
+                      <li><strong>Check Supabase:</strong> <a href="https://supabase.com/dashboard/project/otgyuvfyicuqortshcep" target=\"_blank" rel="noopener noreferrer\" className="underline inline-flex items-center">Verify project is active <ExternalLink className="w-3 h-3 ml-1" /></a></li>
                     </ol>
                     <button
                       onClick={handleRefresh}
@@ -155,7 +155,7 @@ export function LoginPage() {
                     <ul className="text-red-700 text-sm space-y-1 list-disc list-inside">
                       <li><strong>Internet:</strong> Test other websites work</li>
                       <li><strong>Supabase Status:</strong> <a href="https://supabase.com/dashboard/project/otgyuvfyicuqortshcep" target=\"_blank\" rel=\"noopener noreferrer\" className=\"underline inline-flex items-center">Check if project is active <ExternalLink className=\"w-3 h-3 ml-1" /></a></li>
-                      <li><strong>Supabase Status:</strong> <a href="https://supabase.com/dashboard/project/otgyuvfyicuqortshcep" target="_blank" rel="noopener noreferrer" className="underline inline-flex items-center">Check if project is active <ExternalLink className="w-3 h-3 ml-1" /></a></li>
+                      <li><strong>Supabase Status:</strong> <a href="https://supabase.com/dashboard/project/otgyuvfyicuqortshcep" target=\"_blank" rel="noopener noreferrer\" className="underline inline-flex items-center">Check if project is active <ExternalLink className="w-3 h-3 ml-1" /></a></li>
                       <li><strong>Firewall:</strong> Ensure *.supabase.co isn't blocked</li>
                       <li><strong>Environment:</strong> Verify .env file has correct VITE_SUPABASE_URL</li>
                       <li><strong>Project Status:</strong> Supabase projects pause after inactivity</li>
