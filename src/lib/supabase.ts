@@ -63,17 +63,20 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 // Test connection function
 export const testSupabaseConnection = async (): Promise<{ success: boolean; error?: string }> => {
   try {
-    // Add timeout to prevent hanging requests
+    // Add shorter timeout to prevent hanging requests
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
     
-    const { data, error } = await supabase.auth.getSession();
+    // Try a simple health check first
+    const { data, error } = await supabase.auth.getSession({ 
+      signal: controller.signal 
+    });
     clearTimeout(timeoutId);
     
     if (error && error.message.includes('Failed to fetch')) {
       return {
         success: false,
-        error: 'Network error: Unable to reach Supabase servers. Please check your internet connection, verify your Supabase project is active, and ensure no firewall is blocking *.supabase.co domains.'
+        error: 'Network error: Cannot reach Supabase. Check: 1) Internet connection, 2) Supabase project is active at https://supabase.com/dashboard, 3) No firewall blocking *.supabase.co, 4) .env file has correct VITE_SUPABASE_URL'
       };
     }
     
@@ -96,7 +99,7 @@ export const testSupabaseConnection = async (): Promise<{ success: boolean; erro
     if (err.name === 'AbortError') {
       return {
         success: false,
-        error: 'Connection timeout: Supabase request took too long. Please check your internet connection and try again.'
+        error: 'Connection timeout: Supabase took too long to respond. This usually means: 1) Network issues, 2) Supabase project is paused/inactive, 3) Wrong Supabase URL in .env file'
       };
     }
     
@@ -109,7 +112,7 @@ export const testSupabaseConnection = async (): Promise<{ success: boolean; erro
     
     return {
       success: false,
-      error: `Connection test failed: ${err.message || 'Unknown error'}`
+      error: `Connection failed: ${err.message || 'Unknown error'}. Check your .env file and Supabase project status.`
     };
   }
 };

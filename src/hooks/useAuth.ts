@@ -8,30 +8,31 @@ export function useAuth() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Test connection first
+    // Initialize auth with better error handling
     const initializeAuth = async () => {
       try {
-        console.log('🔍 Testing Supabase connection...');
-        const connectionTest = await testSupabaseConnection();
-        if (!connectionTest.success) {
-          console.error('❌ Supabase connection failed:', connectionTest.error);
-          setError(connectionTest.error || 'Unable to connect to Supabase');
-          setLoading(false);
-          return;
-        }
-        console.log('✅ Supabase connection successful');
+        setLoading(true);
+        setError(null);
 
-        // Get initial session
+        // Try to get session with timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+        
         const { data: { session }, error } = await supabase.auth.getSession();
+        clearTimeout(timeoutId);
+        
         if (error) {
-          console.error('Session error:', error);
+          console.error('❌ Session error:', error);
           setError(getAuthErrorMessage(error));
+        } else {
+          console.log('✅ Session loaded successfully');
         }
+        
         setUser(session?.user ?? null);
-        setLoading(false);
       } catch (err) {
-        console.error('Auth initialization error:', err);
+        console.error('❌ Auth initialization error:', err);
         setError(getAuthErrorMessage(err));
+      } finally {
         setLoading(false);
       }
     };
@@ -41,10 +42,17 @@ export function useAuth() {
     // Listen for auth changes
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
-      setError(null);
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('🔄 Auth state changed:', event);
+      try {
+        setUser(session?.user ?? null);
+        setError(null);
+      } catch (err) {
+        console.error('❌ Auth state change error:', err);
+        setError(getAuthErrorMessage(err));
+      } finally {
+        setLoading(false);
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -53,8 +61,8 @@ export function useAuth() {
   const getAuthErrorMessage = (error: any): string => {
     const errorMessage = error?.message || error?.toString() || 'Unknown error occurred';
     
-    if (errorMessage.includes('Failed to fetch') || errorMessage.includes('fetch') || errorMessage.includes('NetworkError')) {
-      return 'Network connection failed. Please check: 1) Your internet connection, 2) Your .env file has correct VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY, 3) Your Supabase project is active (not paused), 4) No firewall is blocking *.supabase.co domains.';
+    if (errorMessage.includes('Failed to fetch') || errorMessage.includes('fetch') || errorMessage.includes('NetworkError') || errorMessage.includes('AbortError')) {
+      return 'Cannot connect to Supabase. Quick fixes: 1) Check your internet connection, 2) Verify .env file exists with correct VITE_SUPABASE_URL, 3) Ensure Supabase project is active at https://supabase.com/dashboard, 4) Restart dev server after .env changes, 5) Check no firewall blocks *.supabase.co';
     }
     
     if (errorMessage.includes('Invalid API key') || errorMessage.includes('Invalid JWT')) {
@@ -125,17 +133,16 @@ export function useAuth() {
       setLoading(true);
       setError(null);
       
-      // Test connection before attempting auth
-      const connectionTest = await testSupabaseConnection();
-      if (!connectionTest.success) {
-        setError(connectionTest.error || 'Unable to connect to Supabase');
-        return;
-      }
+      // Add timeout to auth request
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
       
       const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
+      
+      clearTimeout(timeoutId);
       
       if (error) {
         console.error('Email auth error:', error);
@@ -154,12 +161,9 @@ export function useAuth() {
       setLoading(true);
       setError(null);
       
-      // Test connection before attempting auth
-      const connectionTest = await testSupabaseConnection();
-      if (!connectionTest.success) {
-        setError(connectionTest.error || 'Unable to connect to Supabase');
-        return;
-      }
+      // Add timeout to auth request
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
       
       const { error } = await supabase.auth.signUp({
         email,
@@ -168,6 +172,8 @@ export function useAuth() {
           emailRedirectTo: `${window.location.origin}`,
         },
       });
+      
+      clearTimeout(timeoutId);
       
       if (error) {
         console.error('Sign up error:', error);
