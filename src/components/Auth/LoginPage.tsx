@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, AlertCircle, ExternalLink, RefreshCw, Info, Upload, Zap, Search } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
+import { ConfigCheck } from '../Diagnostics/ConfigCheck';
 
 export function LoginPage() {
   const { signInWithEmail, signUpWithEmail, loading, error } = useAuth();
@@ -8,6 +9,7 @@ export function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showGoogleNotification, setShowGoogleNotification] = useState(false);
+  const [showDiagnostics, setShowDiagnostics] = useState(false);
 
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,6 +43,25 @@ export function LoginPage() {
   const handleRefresh = () => {
     window.location.reload();
   };
+
+  // Show diagnostics if there are configuration errors
+  if (showDiagnostics || isConfigurationError) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
+        <div className="w-full max-w-4xl">
+          <div className="text-center mb-6">
+            <button
+              onClick={() => setShowDiagnostics(false)}
+              className="text-blue-600 hover:text-blue-700 text-sm"
+            >
+              ← Back to Login
+            </button>
+          </div>
+          <ConfigCheck />
+        </div>
+      </div>
+    );
+  }
 
   const handleTestConnection = async () => {
     // This will trigger a re-initialization of the auth hook
@@ -119,6 +140,13 @@ export function LoginPage() {
                     >
                       <RefreshCw className="w-3 h-3" />
                       <span>Refresh page after fixing</span>
+                    </button>
+                    <button
+                      onClick={() => setShowDiagnostics(true)}
+                      className="mt-2 ml-4 inline-flex items-center space-x-1 text-red-700 hover:text-red-800 text-sm"
+                    >
+                      <Info className="w-3 h-3" />
+                      <span>Run diagnostics</span>
                     </button>
                   </div>
                 )}
