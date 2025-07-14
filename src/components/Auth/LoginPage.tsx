@@ -130,7 +130,7 @@ export function LoginPage() {
                         </div>
                       </li>
                       <li><strong>Restart dev server:</strong> Stop (Ctrl+C) and run <code>npm run dev</code> again</li>
-                      <li><strong>Check Supabase:</strong> <a href="https://supabase.com/dashboard/project/otgyuvfyicuqortshcep" target=\"_blank" rel="noopener noreferrer\" className="underline inline-flex items-center">Verify project is active <ExternalLink className="w-3 h-3 ml-1" /></a></li>
+                      <li><strong>Check Supabase:</strong> <a href="https://supabase.com/dashboard/project/otgyuvfyicuqortshcep" target="_blank" rel="noopener noreferrer" className="underline inline-flex items-center">Verify project is active <ExternalLink className="w-3 h-3 ml-1" /></a></li>
                     </ol>
                     <button
                       onClick={handleRefresh}
